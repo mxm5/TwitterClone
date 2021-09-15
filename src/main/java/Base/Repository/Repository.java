@@ -31,15 +31,19 @@ public abstract class Repository
     }
 
     public EntityTransaction getTransaction() {
+        if(entityManager.isOpen())
         return entityManager.getTransaction();
+        else throw new IllegalStateException();
     }
 
     public EntityManager getEntityManager() {
+        if(entityManager.isOpen())
         return entityManager;
+        else throw new IllegalStateException();
     }
 
     @Override
-    public void save(E e) {
+    public void save(E e) throws Exception {
         if (e.getId() == null) {
             EntityTransaction transaction = entityManager.getTransaction();
             try {
@@ -48,6 +52,7 @@ public abstract class Repository
                 transaction.commit();
             } catch (Exception exception) {
                 if (transaction.isActive()) transaction.rollback();
+                throw new IllegalStateException("somthing went wrong");
             }
         }
         EntityTransaction transaction = entityManager.getTransaction();
@@ -66,7 +71,6 @@ public abstract class Repository
         entityManager.remove(e);
         entityManager.getTransaction().commit();
     }
-
 
     @Override
     public Optional<E> getById(ID id) {

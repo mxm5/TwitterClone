@@ -13,7 +13,7 @@ public class UserRepository extends Repository<User, Long> {
         return User.class;
     }
 
-    public User login(User user) {
+    public User findUserNamePasswordInDb(User user) {
 
         String userName = user.getUserName();
         String password = user.getPassword();
@@ -26,12 +26,12 @@ public class UserRepository extends Repository<User, Long> {
         return query.getSingleResult();
     }
 
-    @Override
-    public void safeRemove(User user) {
-        user.cleanAssociations();
-        save(user);
-        delete(user);
-    }
+//    @Override
+//    public void safeRemove(User user) {
+//        user.cleanAssociations();
+//        save(user);
+//        delete(user);
+//    }
 
     public List<User> findUserByUserName(String query) {
         TypedQuery<User> nativeQuery = (TypedQuery<User>) getEntityManager().createNativeQuery("SELECT * FROM twitter_clone.User where User.user_name like '%" + query + "%';", User.class);

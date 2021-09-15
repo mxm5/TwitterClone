@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface RepositoryApi<E extends BaseEntity<ID>, ID extends Serializable> {
 
-    void save(E e);
+    void save(E e) throws Exception;
 
     void delete(E e);
 
@@ -19,6 +19,6 @@ public interface RepositoryApi<E extends BaseEntity<ID>, ID extends Serializable
 
     Collection<E> getChunkOfAll(int chunkSize, int chunkCount);
 
-    void safeRemove(E e);
+//    void safeRemove(E e);
 
 }

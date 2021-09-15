@@ -11,7 +11,7 @@ public class TweetService extends Service<Tweet, Long, TweetRepository> {
     }
 
     public List<Tweet> loadTwentyRecentTweets(int pageCount) {
-        return repository.sortTweetsByDateDescending(20, pageCount);
+        return repository.sortAllTweetsByDateDescending(20, pageCount);
     }
 
 

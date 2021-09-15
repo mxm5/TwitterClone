@@ -16,8 +16,12 @@ public class Service<E extends BaseEntity<ID>, ID extends Serializable, R extend
     }
 
     @Override
-    public void save(E e) {
-        repository.save(e);
+    public void save(E e)  {
+        try {
+            repository.save(e);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -42,6 +46,6 @@ public class Service<E extends BaseEntity<ID>, ID extends Serializable, R extend
 
     @Override
     public void safeRemove(E e) {
-        repository.safeRemove(e);
+
     }
 }

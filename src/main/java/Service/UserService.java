@@ -13,11 +13,15 @@ public class UserService extends Service<User, Long, UserRepository> {
     }
 
     public User login(User enteredUser) {
-        return repository.login(enteredUser);
+        return repository.findUserNamePasswordInDb(enteredUser);
     }
 
     public void register(User registered) {
-        repository.save(registered);
+        try {
+            repository.save(registered);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public List<User> findUserByUserNameLike(String query) {

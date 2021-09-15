@@ -13,7 +13,7 @@ public class TweetRepository extends Repository<Tweet, Long> {
         return Tweet.class;
     }
 
-    public List<Tweet> sortTweetsByDateDescending(int chunkSize, int pageCount) {
+    public List<Tweet> sortAllTweetsByDateDescending(int chunkSize, int pageCount) {
         TypedQuery<Tweet> query = getEntityManager().createQuery("select t from Tweet t order by t.publishDate desc", Tweet.class);
         return query.setFirstResult(chunkSize * pageCount).setMaxResults(chunkSize).getResultList();
     }
@@ -23,10 +23,10 @@ public class TweetRepository extends Repository<Tweet, Long> {
         return query.setFirstResult(chunkSize * pageCount).setMaxResults(chunkSize).getResultList();
     }
 
-    @Override
-    public void safeRemove(Tweet tweet) {
-        tweet.cleanAssociations();
-        save(tweet);
-        delete(tweet);
-    }
+//    @Override
+//    public void safeRemove(Tweet tweet) {
+//        tweet.cleanAssociations();
+//        save(tweet);
+//        delete(tweet);
+//    }
 }

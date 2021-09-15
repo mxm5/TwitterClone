@@ -9,10 +9,10 @@ public class CommentRepository extends Repository<Comment,Long> {
         return Comment.class;
     }
 
-    @Override
-    public void safeRemove(Comment comment) {
-        comment.cleanAssociations();
-        save(comment);
-        delete(comment);
-    }
+//    @Override
+//    public void safeRemove(Comment comment) {
+//        comment.cleanAssociations();
+//        save(comment);
+//        delete(comment);
+//    }
 }
