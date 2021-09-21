@@ -35,6 +35,7 @@ public class Tweet extends BaseEntity<Long> {
     }
 
 
+
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "Tweet_liked",
             joinColumns = @JoinColumn(name = "tweet_id", referencedColumnName = "id"),

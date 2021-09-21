@@ -25,6 +25,6 @@ public class UserService extends Service<User, Long, UserRepository> {
     }
 
     public List<User> findUserByUserNameLike(String query) {
-        return repository.findUserByUserName(query);
+        return repository.searchUserByUserNames(query);
     }
 }

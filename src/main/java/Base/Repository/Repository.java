@@ -44,6 +44,8 @@ public abstract class Repository
 
     @Override
     public void save(E e) throws Exception {
+        if(!entityManager.isOpen())
+            throw new IllegalStateException();
         if (e.getId() == null) {
             EntityTransaction transaction = entityManager.getTransaction();
             try {
@@ -52,7 +54,8 @@ public abstract class Repository
                 transaction.commit();
             } catch (Exception exception) {
                 if (transaction.isActive()) transaction.rollback();
-                throw new IllegalStateException("somthing went wrong");
+                exception.printStackTrace();
+
             }
         }
         EntityTransaction transaction = entityManager.getTransaction();
@@ -79,6 +82,7 @@ public abstract class Repository
 
     @Override
     public Collection<E> getAll() {
+
         return entityManager.
                 createQuery("from " + getType().getSimpleName(), getType()).getResultList();
     }

@@ -23,10 +23,5 @@ public class TweetRepository extends Repository<Tweet, Long> {
         return query.setFirstResult(chunkSize * pageCount).setMaxResults(chunkSize).getResultList();
     }
 
-//    @Override
-//    public void safeRemove(Tweet tweet) {
-//        tweet.cleanAssociations();
-//        save(tweet);
-//        delete(tweet);
-//    }
+
 }
